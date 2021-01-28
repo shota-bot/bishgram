@@ -8,4 +8,8 @@ class Member < ActiveHash::Base
     { id: 6, name: 'リンリン' },
     { id: 7, name: 'アユニ・D' }
   ]
+
+  include ActiveHash::Associations
+  has_many :post_member_relations
+  has_many :posts, through: :post_member_relations
 end
