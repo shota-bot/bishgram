@@ -15,7 +15,7 @@
             <%= f.label :"text" %>
             <%= f.text_field :text, class: "form-control" %>
           </div>
-          <div class="form-group">
+          <div class="form-group members">
             <%= f.label :"Members" %>
             <%= f.collection_check_boxes(:member_ids, Member.where.not(id: 1), :id, :name, include_hidden: false) %>
           </div>
