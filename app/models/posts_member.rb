@@ -5,6 +5,7 @@ class PostsMember
   with_options presence: true do
     validates :image
     validates :member_ids
+    validates :user_id
   end
   
 
