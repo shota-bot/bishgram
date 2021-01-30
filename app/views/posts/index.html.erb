@@ -1,15 +1,15 @@
 <%# ヘッダーナビ %>
 <%= render "shared/navbar" %>
 
-<div class="container mt-5">
+
+
+<div class="container post">
   <div class="row">
     <% @posts.each do |post| %>
-      <div class="col-md-4 pt-3">
-        <div class="card post">
-          <div class="card-body">
-            <%= image_tag post.image, class: "post-img" %>
-          </div>
-        </div>
+      <div class="col-md-4 col-sm-6">
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.image, class: "post-img m-3" %>
+        <% end %>
       </div>
     <% end %>
   </div>

@@ -6,7 +6,8 @@ class Member < ActiveHash::Base
     { id: 4, name: 'モモコグミカンパニー' },
     { id: 5, name: 'ハシヤスメ・アツコ' },
     { id: 6, name: 'リンリン' },
-    { id: 7, name: 'アユニ・D' }
+    { id: 7, name: 'アユニ・D' },
+    { id: 8, name: '清掃員' }
   ]
 
   include ActiveHash::Associations

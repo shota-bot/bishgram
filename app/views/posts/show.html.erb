@@ -1,0 +1,27 @@
+<%= render "shared/navbar" %>
+
+<div class="container show-post">
+  <div class="row">
+    <%= image_tag @post.image, class: "col-md-8 show-img " %>
+    <div class="box2 col-md-4">
+      <div class="user-info">
+        <ul class="d-flex">
+          <li>photo by <%= @post.user.nickname %></li>
+          <% if @post.user_id == current_user.id %>
+            <li><%= link_to '編集', edit_post_path(params[:id]) %></li>
+            <li><%= link_to '削除', post_path(params[:id]), method: :delete %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="member-list">
+        <ul>
+          <% @members.each do |member| %>
+            <li><%= member[:name] %></li>
+          <% end %>
+        </ul>
+      </div>
+      <h4><%= @post.text %></h4>
+      <h3>コメント一覧</h3>
+    </div>
+  </div>
+</div>
