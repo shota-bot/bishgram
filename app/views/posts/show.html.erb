@@ -7,8 +7,10 @@
       <div class="user-info">
         <ul class="d-flex">
           <li>photo by <%= @post.user.nickname %></li>
-          <li><%= link_to '編集', edit_post_path(params[:id]) %></li>
-          <li><%= link_to '削除', post_path(params[:id]), method: :delete %></li>
+          <% if @post.user_id == current_user.id %>
+            <li><%= link_to '編集', edit_post_path(params[:id]) %></li>
+            <li><%= link_to '削除', post_path(params[:id]), method: :delete %></li>
+          <% end %>
         </ul>
       </div>
       <div class="member-list">
