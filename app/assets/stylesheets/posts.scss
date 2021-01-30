@@ -1,10 +1,13 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+  box-sizing: border-box;
+}
 
 .post-img {
-  width: 33vh;
-  height: 33vh;
+  width: 100%;
+  height: auto;
 }
 
 li {
@@ -12,7 +15,7 @@ li {
 }
 
 .post {
-  margin-top: 70px;
+  margin-top: 100px;
 
   h2 {
     text-align: center;

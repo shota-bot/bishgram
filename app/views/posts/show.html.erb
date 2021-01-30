@@ -4,17 +4,22 @@
   <div class="row">
     <%= image_tag @post.image, class: "col-md-8 show-img " %>
     <div class="box2 col-md-4">
-      <%= link_to "#" do %>
-        <h2><%= @post.user.nickname %></h2>
-      <% end %>
-        <ul>
+      <div class="user-info">
+        <ul class="d-flex">
+          <li>photo by <%= @post.user.nickname %></li>
           <li><%= link_to '編集', edit_post_path(params[:id]) %></li>
           <li><%= link_to '削除', post_path(params[:id]), method: :delete %></li>
         </ul>
-        <h4><%= @post.text %></h4>
-
-        <h3>コメント一覧</h3>
-        <form></form>
+      </div>
+      <div class="member-list">
+        <ul>
+          <% @members.each do |member| %>
+            <li><%= member[:name] %></li>
+          <% end %>
+        </ul>
+      </div>
+      <h4><%= @post.text %></h4>
+      <h3>コメント一覧</h3>
     </div>
   </div>
 </div>

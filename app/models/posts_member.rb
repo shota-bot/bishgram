@@ -15,4 +15,14 @@ class PostsMember
       PostMemberRelation.create(post_id: post.id, member_id: member_id)
     end
   end
+
+  def update(id)
+    post = Post.find(id)
+    post.update(image: image, text: text, user_id: user_id)
+    PostMemberRelation.where(post_id: id).delete_all
+    member_ids.each do |member_id|
+      member_id.to_i
+      PostMemberRelation.create(post_id: post.id, member_id: member_id)
+    end
+  end
 end

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_post, only: [:show, :edit, :destroy]
+  before_action :set_post, only: [:show, :edit]
 
   def index
     @posts = Post.includes(:user).order(created_at: :DESC)
@@ -21,24 +21,36 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    records = @post.post_member_relations
+    ids = []
+    records.each do |record|
+      ids << record[:member_id]
+    end
+    @members = []
+    ids.each do |id|
+      @members << Member.find(id)
+    end
   end
 
   def edit
-    post = Post.find(params[:id])
-
-    records = PostMemberRelation.where(post_id: params[:id])
+    records = @post.post_member_relations
     ids = []
     records.each do |record|
       ids << record[:member_id]
     end
 
-    @posts_member = PostsMember.new(image: post.image, text: post.text, member_ids: ids)
+    @posts_member = PostsMember.new(image: @post.image, text: @post.text, member_ids: ids)
   end
 
   def update
-   
-     
+   @posts_member = PostsMember.new(post_params)
+  
+   if @posts_member.valid?
+    @posts_member.update(params[:id])
+    redirect_to post_path(params[:id])
+   else
+    render :edit
+   end
   end
 
   def destroy
