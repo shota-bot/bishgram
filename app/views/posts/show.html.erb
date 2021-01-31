@@ -22,9 +22,9 @@
         </ul>
       </div>
       <%#テキスト表示%>
-      <h3><%= @post.text %></h3>
+      <h4><%= @post.text %></h4>
       <%#コメント%>
-      <div class="overflow-auto" id="comment-container" style="height: 150px;">
+      <div class="overflow-auto border border-light" id="comment-container" style="height: 150px;">
         <%=  render @comments %>
       </div>
       <%= render "footer" %>

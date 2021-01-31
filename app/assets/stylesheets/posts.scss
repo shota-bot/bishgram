@@ -35,7 +35,10 @@ li {
 }
 
 .member-list {
+  ul {
+    padding: 0;
+  }
   li {
-    font-size: 15px;
+    font-size: 13px;
   }
 }

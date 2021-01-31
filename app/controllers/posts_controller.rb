@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     end
 
     # コメント一覧表示用
-    @comments = Comment.includes(:user).order(:id)
+    @comments = @post.comments.includes(:user).order(:id)
     # コメント投稿用
     @comment = current_user.comments.build
   end
