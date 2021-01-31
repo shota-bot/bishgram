@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.includes(:user).order(created_at: :DESC)
@@ -33,7 +34,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user.id == @post.user_id
     records = @post.post_member_relations
     ids = []
     records.each do |record|
@@ -44,19 +44,17 @@ class PostsController < ApplicationController
   end
 
   def update
-    redirect_to root_path unless current_user.id == @post.user_id
-   @posts_member = PostsMember.new(post_params)
-  
-   if @posts_member.valid?
-    @posts_member.update(params[:id])
-    redirect_to post_path(params[:id])
-   else
-    render :edit
-   end
+    @posts_member = PostsMember.new(post_params)
+
+    if @posts_member.valid?
+      @posts_member.update(params[:id])
+      redirect_to post_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   def destroy
-    redirect_to root_path unless current_user.id == @post.user_id
     @post.destroy
     redirect_to root_path
   end
@@ -69,5 +67,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to root_path unless current_user.id == @post.user_id
   end
 end

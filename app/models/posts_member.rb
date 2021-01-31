@@ -7,7 +7,7 @@ class PostsMember
     validates :member_ids
     validates :user_id
   end
-  
+
   def save
     post = Post.create(image: image, text: text, user_id: user_id)
     member_ids.each do |member_id|
