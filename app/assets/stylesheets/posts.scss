@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+// 一覧ページ
 .post-img {
   width: 100%;
   height: auto;
@@ -23,6 +24,7 @@ li {
   }
 }
 
+// 詳細ページ
 .show-img {
   width: 100%;
   height: auto;
@@ -30,4 +32,10 @@ li {
 
 .show-post {
   margin-top: 100px;
+}
+
+.member-list {
+  li {
+    font-size: 15px;
+  }
 }

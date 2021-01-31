@@ -1,0 +1,10 @@
+<footer id="footer">
+  <%= form_with model: [@post, @comment], local: false do |f| %>
+    <div class="form-group">
+      <%= f.text_area :text, class: "form-control", rows: "1", maxlenght: "500" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "送信", class: "btn btn-primary btn-block", id: "comment-button" %>
+    </div>
+  <% end %>
+</footer>
