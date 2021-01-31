@@ -3,7 +3,7 @@
 <div class="container show-post">
   <div class="row">
     <%= image_tag @post.image, class: "col-md-8 show-img bg-white" %>
-    <div class="box2 col-md-4 bg-white">
+    <div class="post-info col-md-4 bg-white">
       <div class="user-info">
         <ul class="d-flex">
           <li>photo by <%= @post.user.nickname %></li>
@@ -27,7 +27,7 @@
       <div class="overflow-auto border border-light" id="comment-container" style="height: 150px;">
         <%=  render @comments %>
       </div>
-      <%= render "footer" %>
+      <%= render "comment_form" %>
     </div>
   </div>
 </div>
