@@ -45,9 +45,10 @@ ActiveRecord::Schema.define(version: 2021_01_31_024756) do
 
   create_table "post_member_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "post_id"
-    t.integer "member_id", null: false
+    t.bigint "member_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_post_member_relations_on_member_id"
     t.index ["post_id"], name: "index_post_member_relations_on_post_id"
   end
 
