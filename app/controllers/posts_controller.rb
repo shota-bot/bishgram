@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
@@ -31,6 +30,11 @@ class PostsController < ApplicationController
     ids.each do |id|
       @members << Member.find(id)
     end
+
+    # コメント一覧表示用
+    @comments = @post.comments.includes(:user).order(:id)
+    # コメント投稿用
+    @comment = current_user.comments.build
   end
 
   def edit

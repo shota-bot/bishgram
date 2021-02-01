@@ -2,8 +2,8 @@
 
 <div class="container show-post">
   <div class="row">
-    <%= image_tag @post.image, class: "col-md-8 show-img " %>
-    <div class="box2 col-md-4">
+    <%= image_tag @post.image, class: "col-md-8 show-img bg-white" %>
+    <div class="post-info col-md-4 bg-white">
       <div class="user-info">
         <ul class="d-flex">
           <li>photo by <%= @post.user.nickname %></li>
@@ -13,6 +13,7 @@
           <% end %>
         </ul>
       </div>
+      <%#メンバー名表示%>
       <div class="member-list">
         <ul>
           <% @members.each do |member| %>
@@ -20,8 +21,15 @@
           <% end %>
         </ul>
       </div>
-      <h4><%= @post.text %></h4>
-      <h3>コメント一覧</h3>
+      <%#テキスト表示%>
+      <div class="text-area">
+        <p><%= @post.text %></p>
+      </div>
+      <%#コメント%>
+      <div class="overflow-auto border border-light comment-list" id="comment-container" style="height: 150px;">
+        <%=  render @comments %>
+      </div>
+      <%= render "comment_form" %>
     </div>
   </div>
 </div>
