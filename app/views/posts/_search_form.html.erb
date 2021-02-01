@@ -1,0 +1,10 @@
+<%= form_with(url: posts_path, local: true, method: :get) do |f| %>
+  <%= select_tag :member_id,
+                  options_from_collection_for_select(Member.where.not(id: 1), :id, :name, params[:member_id]),
+                  {
+                    prompt: 'メンバーで絞り込む',
+                    onchange: 'submit(this.from);',
+                    class: "custom-select"
+                  }
+   %>
+<% end %>

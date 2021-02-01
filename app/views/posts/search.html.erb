@@ -1,0 +1,14 @@
+<%= render "shared/navbar" %>
+
+<h1>検索結果</h1>
+<div class="container post">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-4 col-sm-6">
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.image, class: "post-img m-3" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
