@@ -12,5 +12,8 @@ class Member < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :post_member_relations
-  has_many :posts, through: :post_member_relations
+
+  def posts
+    post_member_relations.map(&:post)
+  end
 end

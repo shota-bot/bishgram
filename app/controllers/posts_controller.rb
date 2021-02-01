@@ -21,16 +21,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    records = @post.post_member_relations
-    ids = []
-    records.each do |record|
-      ids << record[:member_id]
-    end
-    @members = []
-    ids.each do |id|
-      @members << Member.find(id)
-    end
-
+    @member_names = @post.members.map{ |hash| hash[:name] }
+  
     # コメント一覧表示用
     @comments = @post.comments.includes(:user).order(:id)
     # コメント投稿用
@@ -38,13 +30,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    records = @post.post_member_relations
-    ids = []
-    records.each do |record|
-      ids << record[:member_id]
-    end
+    member_ids = @post.members.map{ |hash| hash[:id] }
 
-    @posts_member = PostsMember.new(image: @post.image, text: @post.text, member_ids: ids)
+    @posts_member = PostsMember.new(image: @post.image, text: @post.text, member_ids: member_ids)
   end
 
   def update
