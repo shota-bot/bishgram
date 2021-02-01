@@ -37,8 +37,14 @@ li {
 .member-list {
   ul {
     padding: 0;
+    height: 100px;
   }
   li {
     font-size: 13px;
   }
+}
+
+.comment-list {
+  height: 180px;
+  margin-bottom: 20px;
 }

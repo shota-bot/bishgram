@@ -13,7 +13,7 @@ import consumer from "./consumer"
 
     received(data) {
       // Called when there's incoming data on the websocket for this channel
-      const commentContainer = document.getElementById("comment-container")
-      commentContainer.insertAdjacentHTML('beforeend', data['comment'])
+      const commentContainer = document.getElementById("comment-container");
+      commentContainer.insertAdjacentHTML('beforeend', data['comment']);
     }
   });

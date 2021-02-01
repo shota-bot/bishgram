@@ -22,9 +22,11 @@
         </ul>
       </div>
       <%#テキスト表示%>
-      <h4><%= @post.text %></h4>
+      <div class="text-area">
+        <p><%= @post.text %></p>
+      </div>
       <%#コメント%>
-      <div class="overflow-auto border border-light" id="comment-container" style="height: 150px;">
+      <div class="overflow-auto border border-light comment-list" id="comment-container" style="height: 150px;">
         <%=  render @comments %>
       </div>
       <%= render "comment_form" %>
