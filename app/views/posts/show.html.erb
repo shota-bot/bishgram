@@ -5,13 +5,13 @@
     <%= image_tag @post.image, class: "col-md-8 show-img bg-white" %>
     <div class="post-info col-md-4 bg-white">
       <div class="user-info">
-        <ul class="d-flex">
-          <li>photo by <%= @post.user.nickname %></li>
-          <% if @post.user_id == current_user.id %>
+        <h3>photo by <%= link_to @post.user.nickname, user_path(@post.user_id) %></h3>
+        <% if @post.user_id == current_user.id %>
+          <ul class="d-flex">
             <li><%= link_to '編集', edit_post_path(params[:id]) %></li>
             <li><%= link_to '削除', post_path(params[:id]), method: :delete %></li>
-          <% end %>
-        </ul>
+          </ul>
+        <% end %>
       </div>
       <%#メンバー名表示%>
       <div class="member-list">
@@ -31,5 +31,18 @@
       </div>
       <%= render "comment_form" %>
     </div>
+  </div>
+</div>
+
+<div class="container">
+  <h4 class="mt-5">同じユーザーの投稿</h4>
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-4 col-sm-6">
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.image, class: "post-img m-3" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

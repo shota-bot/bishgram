@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     if params[:member_id].present?
+      @posts = Post.with_attached_image
       @posts = Member.find(params[:member_id]).posts.sort!{|a| a[:created_at]}
     else
       @posts = Post.with_attached_image.order(created_at: :DESC)
@@ -26,22 +27,22 @@ class PostsController < ApplicationController
 
   def show
     @member_names = @post.members.map{ |hash| hash[:name] }
-  
-    # コメント一覧表示用
+
     @comments = @post.comments.includes(:user).order(:id)
-    # コメント投稿用
     @comment = current_user.comments.build
+
+    @posts = Post.with_attached_image
+    @user = User.find(@post.user_id)
+    @posts = @posts.where(user_id: @user)
   end
 
   def edit
     member_ids = @post.members.map{ |hash| hash[:id] }
-
     @posts_member = PostsMember.new(image: @post.image, text: @post.text, member_ids: member_ids)
   end
 
   def update
     @posts_member = PostsMember.new(post_params)
-
     if @posts_member.valid?
       @posts_member.update(params[:id])
       redirect_to post_path(params[:id])
