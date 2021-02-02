@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def index
     if params[:member_id].present?
       @posts = Post.with_attached_image
-      @posts = Member.find(params[:member_id]).posts.sort!{|a| a[:created_at]}
+      @posts = Member.find(params[:member_id]).posts.sort! { |a| a[:created_at] }
     else
       @posts = Post.with_attached_image.order(created_at: :DESC)
     end
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @member_names = @post.members.map{ |hash| hash[:name] }
+    @member_names = @post.members.map { |hash| hash[:name] }
 
     @comments = @post.comments.includes(:user).order(:id)
     @comment = current_user.comments.build
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    member_ids = @post.members.map{ |hash| hash[:id] }
+    member_ids = @post.members.map { |hash| hash[:id] }
     @posts_member = PostsMember.new(image: @post.image, text: @post.text, member_ids: member_ids)
   end
 

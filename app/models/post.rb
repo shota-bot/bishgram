@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   has_one_attached :image
   has_many :comments, dependent: :destroy
   has_many :post_member_relations, dependent: :destroy
-  
+
   def members
     post_member_relations.map(&:member)
   end
