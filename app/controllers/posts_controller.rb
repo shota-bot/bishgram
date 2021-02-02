@@ -4,7 +4,6 @@ class PostsController < ApplicationController
 
   def index
     if params[:member_id].present?
-      @posts = Post.with_attached_image
       @posts = Member.find(params[:member_id]).posts.sort! { |a| a[:created_at] }
     else
       @posts = Post.with_attached_image.order(created_at: :DESC)
