@@ -17,7 +17,8 @@ class PostsController < ApplicationController
   def create
     @posts_member = PostsMember.new(post_params)
 
-    if @posts_member.save
+    if @posts_member.valid?
+      @posts_member.save
       redirect_to root_path
     else
       render :new
