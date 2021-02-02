@@ -5,12 +5,24 @@
     <%= image_tag @post.image, class: "col-md-8 show-img bg-white" %>
     <div class="post-info col-md-4 bg-white">
       <div class="user-info">
-        <h3>photo by <%= link_to @post.user.nickname, user_path(@post.user_id) %></h3>
+        <h3>
+        photo by <%= link_to @post.user.nickname, user_path(@post.user_id) %>
+        </h3>
         <% if @post.user_id == current_user.id %>
           <ul class="d-flex">
             <li><%= link_to '編集', edit_post_path(params[:id]) %></li>
             <li><%= link_to '削除', post_path(params[:id]), method: :delete %></li>
           </ul>
+        <% else %>
+          <% if @favorite.present? %>
+            <%= link_to post_favorite_path(params[:id]), method: :delete do %>
+              <span class="fas fa-award text-danger"></span>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(params[:id]), method: :post do %>
+              <span class="fas fa-award"></span>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
       <%#メンバー名表示%>
