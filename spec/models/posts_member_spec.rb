@@ -25,17 +25,17 @@ RSpec.describe PostsMember, type: :model do
       it 'imageが空だと投稿できない' do
         @posts_member.image = nil
         @posts_member.valid?
-        expect(@posts_member.errors.full_messages).to include("Image can't be blank")
+        expect(@posts_member.errors.full_messages).to include("画像・写真を選択してください")
       end
       it 'member_idsが空だと投稿できない' do
         @posts_member.member_ids = []
         @posts_member.valid?
-        expect(@posts_member.errors.full_messages).to include("Member ids can't be blank")
+        expect(@posts_member.errors.full_messages).to include("メンバーを選択してください")
       end
       it 'user_idが空だと投稿できない' do
         @posts_member.user_id = nil
         @posts_member.valid?
-        expect(@posts_member.errors.full_messages).to include("User can't be blank")
+        expect(@posts_member.errors.full_messages).to include("ユーザーが存在しません")
       end
     end
   end

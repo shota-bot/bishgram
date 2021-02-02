@@ -14,3 +14,5 @@ ja:
         text: テキスト
         image: 画像・写真
         member_ids: メンバー
+        user: ユーザー
+        user_id: ユーザー

@@ -5,7 +5,7 @@ class PostsMember
 
   validates :image, presence: {message: "を選択してください"}
   validates :member_ids, presence: {message: "を選択してください"}
-  validates :user_id, presence: true
+  validates :user_id, presence: {message: "が存在しません"}
 
   def save
     post = Post.create(image: image, text: text, user_id: user_id)
