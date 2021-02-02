@@ -16,22 +16,22 @@ RSpec.describe Comment, type: :model do
       it 'textがないと投稿できない' do
         @comment.text = nil
         @comment.valid?
-        expect(@comment.errors.full_messages).to include("Text can't be blank")
+        expect(@comment.errors.full_messages).to include("テキストを入力してください")
       end
       it 'userに紐づいていないと投稿できない' do
         @comment.user = nil
         @comment.valid?
-        expect(@comment.errors.full_messages).to include("User must exist")
+        expect(@comment.errors.full_messages).to include("Userを入力してください")
       end
       it 'postに紐づいていないと投稿できない' do
         @comment.post = nil
         @comment.valid?
-        expect(@comment.errors.full_messages).to include("Post must exist")
+        expect(@comment.errors.full_messages).to include("Postを入力してください")
       end
       it '100文字以内でないと投稿できない' do
         @comment.text = Faker::Lorem.characters(number: 101)
         @comment.valid?
-        expect(@comment.errors.full_messages).to include("Text is too long (maximum is 100 characters)")
+        expect(@comment.errors.full_messages).to include("テキストは100文字以内で入力してください")
       end
     end
   end

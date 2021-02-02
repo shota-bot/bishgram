@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+      post:
+        text: テキスト
+        image: 画像・写真
+      comment:
+        text: テキスト
+  activemodel:
+    attributes:
+      posts_member:
+        text: テキスト
+        image: 画像・写真
+        member_ids: メンバー
+        user: ユーザー
+        user_id: ユーザー

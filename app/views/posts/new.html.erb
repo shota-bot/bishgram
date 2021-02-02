@@ -6,6 +6,9 @@
       <div class="card-body">
         <h2>新規投稿</h2>
         <%= form_with model: @posts_member, url: posts_path, local: true do |f| %>
+
+          <%= render "shared/error_messages", model: f.object %>
+
           <div class="form-group">
             <%= f.label :"image" %>
             <%= f.file_field :image, class: "form-control" %>
