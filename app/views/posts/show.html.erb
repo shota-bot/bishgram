@@ -14,15 +14,7 @@
             <li><%= link_to '削除', post_path(params[:id]), method: :delete %></li>
           </ul>
         <% else %>
-          <% if @favorite.present? %>
-            <%= link_to post_favorite_path(params[:id]), method: :delete do %>
-              <span class="fas fa-award text-danger"></span>
-            <% end %>
-          <% else %>
-            <%= link_to post_favorites_path(params[:id]), method: :post do %>
-              <span class="fas fa-award"></span>
-            <% end %>
-          <% end %>
+          <%= render partial: "favorites/favorite", locals: { post: @post, favorite: @favorite} %>
         <% end %>
       </div>
       <%#メンバー名表示%>

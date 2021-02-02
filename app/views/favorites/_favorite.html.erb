@@ -1,0 +1,9 @@
+<% if @favorite.present? %>
+  <%= link_to post_favorite_path(post, favorite), method: :delete, remote: true do %>
+    <span class="fas fa-award text-danger"></span>
+  <% end %>
+<% else %>
+  <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+    <span class="fas fa-award"></span>
+  <% end %>
+<% end %>
