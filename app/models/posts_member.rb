@@ -2,11 +2,10 @@ class PostsMember
   include ActiveModel::Model
   attr_accessor :image, :text, :member_ids, :user_id
 
-  with_options presence: true do
-    validates :image
-    validates :member_ids
-    validates :user_id
-  end
+
+  validates :image, presence: {message: "を選択してください"}
+  validates :member_ids, presence: {message: "を選択してください"}
+  validates :user_id, presence: true
 
   def save
     post = Post.create(image: image, text: text, user_id: user_id)
