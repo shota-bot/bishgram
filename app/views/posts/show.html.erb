@@ -22,8 +22,8 @@
       <%#メンバー名表示%>
       <div class="member-list">
         <ul>
-          <% @member_names.each do |name| %>
-            <li><%= name %></li>
+          <% @post.members.each do |member| %>
+            <li><%= member.name %></li>
           <% end %>
         </ul>
       </div>
@@ -43,7 +43,7 @@
 <div class="container">
   <h4 class="mt-5">同じユーザーの投稿</h4>
   <div class="row">
-    <% @posts.each do |post| %>
+    <% @post.user.posts.with_attached_image.each do |post| %>
       <div class="col-md-4 col-sm-6">
         <%= link_to post_path(post.id) do %>
           <%= image_tag post.image, class: "post-img m-3" %>

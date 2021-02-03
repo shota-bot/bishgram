@@ -26,14 +26,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @member_names = @post.members.map { |hash| hash[:name] }
-
     @comments = @post.comments.includes(:user).order(:id)
     @comment = current_user.comments.build
-
-    @posts = Post.with_attached_image
-    @user = User.find(@post.user_id)
-    @posts = @posts.where(user_id: @user)
 
     @favorite = Favorite.find_by(user_id: current_user.id, post_id: @post.id)
     @favorites = Favorite.where(post_id: params[:id])
