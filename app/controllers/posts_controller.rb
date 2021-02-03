@@ -3,11 +3,11 @@ class PostsController < ApplicationController
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
-    if params[:member_id].present?
-      @posts = Member.find(params[:member_id]).posts.sort! { |a| a[:created_at] }
-    else
-      @posts = Post.with_attached_image.order(created_at: :DESC)
-    end
+    @posts = if params[:member_id].present?
+               Member.find(params[:member_id]).posts.sort! { |a| a[:created_at] }
+             else
+               Post.with_attached_image.order(created_at: :DESC)
+             end
   end
 
   def new
