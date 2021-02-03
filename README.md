@@ -17,7 +17,9 @@
 パスワード： 1111 
  
 # テスト用アカウント
-
+nickname: user_1
+email: user_1@com
+password: aaaaaa
 
 
 # 目指した課題解決
