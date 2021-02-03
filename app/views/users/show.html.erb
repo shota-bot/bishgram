@@ -16,15 +16,38 @@
   </div>
 </div>
 
-<div class="container user-posts">
-  <h4>過去の投稿</h4>
-  <div class="row">
-    <% @posts.each do |post| %>
-      <div class="col-md-4 col-sm-6">
-        <%= link_to post_path(post.id) do %>
-          <%= image_tag post.image, class: "post-img m-3" %>
+<div class="container tabs">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#posted" class="nav-link active" data-toggle="tab">過去の投稿</a>
+    </li>
+    <li class="nav-item">
+      <a href="#favorite" class="nav-link" data-toggle="tab">お気に入り</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="posted" class="tab-pane active">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-4 col-sm-6">
+            <%= link_to post_path(post.id) do %>
+              <%= image_tag post.image, class: "post-img m-3" %>
+            <% end %>
+          </div>
         <% end %>
       </div>
-    <% end %>
+    </div>
+    <div id="favorite" class="tab-pane">
+      <div class="row">
+        <% @favorite_list.each do |post| %>
+          <div class="col-md-4 col-sm-6">
+            <%= link_to post_path(post.id) do %>
+              <%= image_tag post.image, class: "post-img m-3" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

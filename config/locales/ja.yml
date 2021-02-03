@@ -8,6 +8,9 @@ ja:
         image: 画像・写真
       comment:
         text: テキスト
+      favorite:
+        user: ユーザー
+        post: 投稿
   activemodel:
     attributes:
       posts_member:
