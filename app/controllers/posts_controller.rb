@@ -3,11 +3,11 @@ class PostsController < ApplicationController
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
-    if params[:member_id].present?
-      @posts = Member.find(params[:member_id]).posts.sort! { |a| a[:created_at] }
-    else
-      @posts = Post.with_attached_image.order(created_at: :DESC)
-    end
+    @posts = if params[:member_id].present?
+               Member.find(params[:member_id]).posts.sort! { |a| a[:created_at] }
+             else
+               Post.with_attached_image.order(created_at: :DESC)
+             end
   end
 
   def new
@@ -26,14 +26,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @member_names = @post.members.map { |hash| hash[:name] }
-
     @comments = @post.comments.includes(:user).order(:id)
     @comment = current_user.comments.build
-
-    @posts = Post.with_attached_image
-    @user = User.find(@post.user_id)
-    @posts = @posts.where(user_id: @user)
 
     @favorite = Favorite.find_by(user_id: current_user.id, post_id: @post.id)
     @favorites = Favorite.where(post_id: params[:id])

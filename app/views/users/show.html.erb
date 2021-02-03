@@ -6,10 +6,16 @@
         <div class="col-6">
           <h3 class="mt-5">清掃員名</h3>
           <h1><%= @user.nickname %></h1>
+          <% if current_user != @user %>
+            <div class="follow">
+              <%= render partial: "relationships/follow", locals: { user: @user } %>
+            </div>
+          <% end %>
         </div>
         <div class="col-6">
-          <h3 class="mt-5" >投稿数</h3>
-          <h1><%= @user.posts.count %></h1>
+          <h3 class="mt-5" >投稿数：<%= @user.posts.count %></h3>
+          <h3 class="mt-5">フォロー数：<%= @user.following_user.count %></h3>
+          <h3 class="mt-5">フォロワー数：<%= @user.follower_user.count %></h3>
         </div>
       </div>
     </div>
@@ -24,12 +30,18 @@
     <li class="nav-item">
       <a href="#favorite" class="nav-link" data-toggle="tab">お気に入り</a>
     </li>
+    <li class="nav-item">
+      <a href="#followering" class="nav-link" data-toggle="tab">フォロー</a>
+    </li>
+    <li class="nav-item">
+      <a href="#follower" class="nav-link" data-toggle="tab">フォロワー</a>
+    </li>
   </ul>
 
   <div class="tab-content">
     <div id="posted" class="tab-pane active">
       <div class="row">
-        <% @posts.each do |post| %>
+        <% @user.posts.with_attached_image.each do |post| %>
           <div class="col-md-4 col-sm-6">
             <%= link_to post_path(post.id) do %>
               <%= image_tag post.image, class: "post-img m-3" %>
@@ -49,5 +61,24 @@
         <% end %>
       </div>
     </div>
+    <div id="followering" class="tab-pane">
+      <ul>
+        <% @user.following_user.each do |following_user| %>
+          <li class="mt-3">
+           <%= link_to following_user.nickname, user_path(following_user.id) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div id="follower" class="tab-pane">
+      <ul>
+        <% @user.follower_user.each do |follower_user| %>
+          <li class="mt-3">
+            <%= link_to follower_user.nickname, user_path(follower_user.id) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
+
 </div>
