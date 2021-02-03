@@ -8,14 +8,16 @@
         <h3>
         photo by <%= link_to @post.user.nickname, user_path(@post.user_id) %>
         </h3>
-        <% if @post.user_id == current_user.id %>
-          <ul class="d-flex">
-            <li><%= link_to '編集', edit_post_path(params[:id]) %></li>
+        <ul class="d-flex">
+            <li class="post-favorite mr-3">
+              <%= render partial: "favorites/favorite", locals: { post: @post, favorite: @favorite} %>
+              <%= @favorites.count %>
+            </li>
+          <% if @post.user_id == current_user.id %>
+            <li><%= link_to '編集', edit_post_path(params[:id]), class: "mr-3" %></li>
             <li><%= link_to '削除', post_path(params[:id]), method: :delete %></li>
-          </ul>
-        <% else %>
-          <%= render partial: "favorites/favorite", locals: { post: @post, favorite: @favorite} %>
-        <% end %>
+          <% end %>
+        </ul>
       </div>
       <%#メンバー名表示%>
       <div class="member-list">

@@ -36,6 +36,7 @@ class PostsController < ApplicationController
     @posts = @posts.where(user_id: @user)
 
     @favorite = Favorite.find_by(user_id: current_user.id, post_id: @post.id)
+    @favorites = Favorite.where(post_id: params[:id])
   end
 
   def edit
