@@ -1,0 +1,5 @@
+ <% if current_user.following?(user) %>
+  <%= link_to 'フォロー中', user_unfollow_path(current_user.id, params[:id]), method: :post %>
+<% else %>
+  <%= link_to 'フォロー', user_follow_path(current_user.id, params[:id]), method: :post %>
+<% end %>
