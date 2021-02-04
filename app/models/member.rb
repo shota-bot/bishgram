@@ -14,6 +14,6 @@ class Member < ActiveHash::Base
   has_many :post_member_relations
 
   def posts
-    post_member_relations.includes(:post).map(&:post)
+    post_member_relations.includes(post: {image_attachment: :blob}).map(&:post)
   end
 end
