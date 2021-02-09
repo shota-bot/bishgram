@@ -2,12 +2,16 @@
 <%= render "shared/navbar" %>
 <div class="container post">
   <div class="row">
-    <% @posts.each do |post| %>
-       <div class="col-md-4 col-sm-6">
-         <%= link_to post_path(post.id) do %>
-           <%= image_tag post.image, class: "post-img m-3" %>
-         <% end %>
-       </div>
+    <% if @posts.length > 0 %>
+      <% @posts.each do |post| %>
+        <div class="col-md-4 col-sm-6">
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.image, class: "post-img m-3" %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <h3>まだ投稿されていません</h3>
     <% end %>
   </div>
 </div>
