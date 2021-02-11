@@ -5,9 +5,12 @@
     <% if @posts.length > 0 %>
       <% @posts.each do |post| %>
         <div class="col-md-4 col-sm-6">
-          <%= link_to post_path(post.id) do %>
-            <%= image_tag post.image, class: "post-img m-3" %>
-          <% end %>
+          <div class="card bg-muted mb-3">
+            <%= image_tag post.image, class: "card-img-top" %>
+            <div class="card-body">
+              <%= link_to post.user.nickname, user_path(post.user_id) %>
+            </div>
+          </div>
         </div>
       <% end %>
     <% else %>

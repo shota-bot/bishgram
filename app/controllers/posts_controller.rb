@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @posts = if params[:member_id].present?
                Member.find(params[:member_id]).posts.sort! { |a| a[:created_at] }
              else
-               Post.with_attached_image.order(created_at: :DESC)
+               Post.with_attached_image.includes(:user).order(created_at: :DESC)
              end
   end
 

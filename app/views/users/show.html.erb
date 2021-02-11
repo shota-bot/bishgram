@@ -41,7 +41,7 @@
   <div class="tab-content">
     <div id="posted" class="tab-pane active">
       <div class="row">
-        <% @user.posts.with_attached_image.each do |post| %>
+        <% @user.posts.with_attached_image.order(created_at: :DESC).each do |post| %>
           <div class="col-md-4 col-sm-6">
             <%= link_to post_path(post.id) do %>
               <%= image_tag post.image, class: "post-img m-3" %>
